@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="112" fill="#080808"/>
+  <rect x="16" y="16" width="480" height="480" rx="96" stroke="#292929" stroke-width="8"/>
+  <!-- Musical chord representation & fret marks -->
+  <circle cx="256" cy="256" r="140" stroke="#1F2937" stroke-width="6"/>
+  <path d="M190 320V192L330 156V284" stroke="#8BB8FF" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="160" cy="320" r="32" fill="#8BB8FF"/>
+  <circle cx="300" cy="284" r="32" fill="#8BB8FF"/>
+  <!-- Subtle Roman numeral / indicator -->
+  <path d="M220 184L330 156" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+</svg>

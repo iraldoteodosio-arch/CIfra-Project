@@ -1,0 +1,6 @@
+{
+  "name": "As 10 Mais Tocadas | Morada",
+  "description": "Biblioteca musical com letras, cifras e orientações para violão, teclado, baixo e bateria para bandas de louvor e músicos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
