@@ -64,16 +64,28 @@ class StorageService {
       let hasUpdates = false;
       for (const initSong of INITIAL_SONGS) {
         const existing = parsed.find((s) => s.id === initSong.id);
-        if (existing && !existing.content && initSong.content) {
-          existing.content = initSong.content;
-          existing.originalKey = initSong.originalKey;
-          existing.bpm = initSong.bpm;
-          existing.timeSignature = initSong.timeSignature;
-          existing.capo = initSong.capo;
-          existing.structure = initSong.structure;
-          existing.observations = initSong.observations;
-          existing.instrumentsData = initSong.instrumentsData;
-          hasUpdates = true;
+        if (existing) {
+          if (!existing.content && initSong.content) {
+            existing.content = initSong.content;
+            existing.originalKey = initSong.originalKey;
+            existing.bpm = initSong.bpm;
+            existing.timeSignature = initSong.timeSignature;
+            existing.capo = initSong.capo;
+            existing.structure = initSong.structure;
+            existing.observations = initSong.observations;
+            existing.instrumentsData = initSong.instrumentsData;
+            hasUpdates = true;
+          } else if (initSong.content && ['song-1', 'song-2', 'song-3'].includes(initSong.id) && existing.content !== initSong.content) {
+            existing.content = initSong.content;
+            existing.originalKey = initSong.originalKey;
+            existing.bpm = initSong.bpm;
+            existing.timeSignature = initSong.timeSignature;
+            existing.capo = initSong.capo;
+            existing.structure = initSong.structure;
+            existing.observations = initSong.observations;
+            existing.instrumentsData = initSong.instrumentsData;
+            hasUpdates = true;
+          }
         }
       }
       if (hasUpdates) {

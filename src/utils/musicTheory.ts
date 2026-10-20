@@ -224,6 +224,8 @@ export const GUITAR_CHORDS_DB: Record<string, ChordFretData> = {
   'D7M': { frets: [-1, -1, 0, 2, 2, 2], fingers: [0, 0, 0, 1, 2, 3] },
   'Dm': { frets: [-1, -1, 0, 2, 3, 1], fingers: [0, 0, 0, 2, 3, 1] },
   'Dm7': { frets: [-1, -1, 0, 2, 1, 1], fingers: [0, 0, 0, 2, 1, 1] },
+  'Dm7(9)': { frets: [-1, -1, 0, 2, 1, 0], fingers: [0, 0, 0, 2, 1, 0] },
+  'Dm9': { frets: [-1, -1, 0, 2, 1, 0], fingers: [0, 0, 0, 2, 1, 0] },
   'D#': { frets: [-1, 6, 8, 8, 8, 6], baseFret: 6, fingers: [0, 1, 2, 3, 4, 1], barre: { fret: 6, fromString: 4, toString: 0 } },
   'Eb': { frets: [-1, 6, 8, 8, 8, 6], baseFret: 6, fingers: [0, 1, 2, 3, 4, 1], barre: { fret: 6, fromString: 4, toString: 0 } },
 
@@ -238,6 +240,8 @@ export const GUITAR_CHORDS_DB: Record<string, ChordFretData> = {
 
   // F family
   'F': { frets: [1, 3, 3, 2, 1, 1], baseFret: 1, fingers: [1, 3, 4, 2, 1, 1], barre: { fret: 1, fromString: 5, toString: 0 } },
+  'F9': { frets: [-1, -1, 3, 2, 1, 3], fingers: [0, 0, 3, 2, 1, 4] },
+  'Fadd9': { frets: [-1, -1, 3, 2, 1, 3], fingers: [0, 0, 3, 2, 1, 4] },
   'F7M': { frets: [-1, -1, 3, 2, 1, 0], fingers: [0, 0, 3, 2, 1, 0] },
   'F7M/C': { frets: [-1, 3, 3, 2, 1, 0], fingers: [0, 3, 4, 2, 1, 0] },
   'F#': { frets: [2, 4, 4, 3, 2, 2], baseFret: 2, fingers: [1, 3, 4, 2, 1, 1], barre: { fret: 2, fromString: 5, toString: 0 } },
@@ -247,6 +251,7 @@ export const GUITAR_CHORDS_DB: Record<string, ChordFretData> = {
 
   // G family
   'G': { frets: [3, 2, 0, 0, 3, 3], fingers: [2, 1, 0, 0, 3, 4] },
+  'G4': { frets: [3, 2, 0, 0, 1, 3], fingers: [3, 2, 0, 0, 1, 4] },
   'G/B': { frets: [-1, 2, 0, 0, 3, 3], fingers: [0, 1, 0, 0, 3, 4] },
   'G7': { frets: [3, 2, 0, 0, 0, 1], fingers: [3, 2, 0, 0, 0, 1] },
   'G7M': { frets: [3, 2, 0, 0, 0, 2], fingers: [2, 1, 0, 0, 0, 3] },

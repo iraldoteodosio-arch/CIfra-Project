@@ -182,6 +182,11 @@ export const SongEditorModal: React.FC<SongEditorModalProps> = ({
                         />
                       ))}
                     </div>
+
+                    <div className="mt-2 pt-2 border-t border-[#1f1f1f] text-[11px] text-[#A1A1AA] flex items-center gap-2">
+                      <span className="text-[#EE602B] font-bold uppercase text-[10px]">Lembre-se:</span>
+                      <span>Mão Esquerda (formação: 1-4) · Mão Direita (dedilhado: P, I, M, A)</span>
+                    </div>
                   </div>
                 );
               })()}

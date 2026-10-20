@@ -4,6 +4,7 @@ import { extractUniqueChords, parseSongContent } from '../utils/chordParser';
 import { transposeNote, transposeChord } from '../utils/musicTheory';
 import { SongChordViewer } from './SongChordViewer';
 import { ChordDiagram } from './ChordDiagram';
+import { HandRulesGuide } from './HandRulesGuide';
 import { GuitarView } from './instruments/GuitarView';
 import { KeyboardView } from './instruments/KeyboardView';
 import { BassView } from './instruments/BassView';
@@ -20,6 +21,7 @@ import {
   Plus,
   Minus,
   SlidersHorizontal,
+  Hand,
 } from 'lucide-react';
 
 interface SongViewProps {
@@ -56,6 +58,9 @@ export const SongView: React.FC<SongViewProps> = ({
 
   // Show/hide chord diagrams section
   const [showSongChords, setShowSongChords] = useState<boolean>(true);
+
+  // Hand rules modal
+  const [showHandRules, setShowHandRules] = useState<boolean>(false);
 
   // Unique chords detected in the song
   const uniqueChords = useMemo(() => {
@@ -412,18 +417,29 @@ export const SongView: React.FC<SongViewProps> = ({
           {/* Quick Chord Diagrams strip for all songs with chords (Exact model from image) */}
           {showSongChords && uniqueChords.length > 0 && (
             <div className="mb-6 p-4 rounded-2xl bg-[#101010] border border-[#292929] no-print">
-              <div className="flex items-center justify-between mb-3 text-xs">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-3 text-xs">
                 <span className="font-bold text-white flex items-center gap-1.5">
                   <span>Diagramas dos Acordes</span>
                   <span className="text-xs text-[#A1A1AA] font-normal">
                     ({uniqueChords.length} acordes na tonalidade {currentKey || song.originalKey || 'atual'})
                   </span>
                 </span>
-                {capoNumber && capoNumber > 0 ? (
-                  <span className="text-[#EE602B] font-bold text-[11px]">
-                    Capotraste: {capoNumber}ª casa
-                  </span>
-                ) : null}
+                <div className="flex items-center gap-2">
+                  {capoNumber && capoNumber > 0 ? (
+                    <span className="text-[#EE602B] font-bold text-[11px] mr-1">
+                      Capotraste: {capoNumber}ª casa
+                    </span>
+                  ) : null}
+                  <button
+                    type="button"
+                    onClick={() => setShowHandRules(true)}
+                    className="flex items-center gap-1.5 text-xs text-[#EE602B] hover:text-white px-2.5 py-1 rounded-lg bg-[#181818] border border-[#EE602B]/40 hover:border-[#EE602B] transition-colors cursor-pointer"
+                    title="Ver a regra das mãos (Mão esquerda: acordes, Mão direita: batidas e dedilhados)"
+                  >
+                    <Hand className="w-3.5 h-3.5" />
+                    <span>Regra das Mãos</span>
+                  </button>
+                </div>
               </div>
 
               <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-thin">
@@ -434,6 +450,32 @@ export const SongView: React.FC<SongViewProps> = ({
                     capo={capoNumber || 0}
                   />
                 ))}
+              </div>
+
+              {/* Lembre-se: Regra da Mão Esquerda e Mão Direita (image_b5a9d7ee.png) */}
+              <div className="mt-3 pt-3 border-t border-[#1f1f1f] flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs bg-[#141414] p-3 rounded-xl border border-[#242424]">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-[#EE602B] font-black uppercase text-[11px] tracking-wider">
+                    Lembre-se:
+                  </span>
+                  <div className="flex items-center gap-1 text-[#D4D4D8]">
+                    <strong className="text-white">Mão Esquerda:</strong>
+                    <span className="text-[#A1A1AA]">Executa a formação dos acordes (dedos 1 a 4)</span>
+                  </div>
+                  <span aria-hidden="true" className="hidden md:inline text-[#333]">·</span>
+                  <div className="flex items-center gap-1 text-[#D4D4D8]">
+                    <strong className="text-white">Mão Direita:</strong>
+                    <span className="text-[#A1A1AA]">Executa as batidas e os dedilhados (P, I, M, A)</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setShowHandRules(true)}
+                  className="text-[#EE602B] hover:text-white font-semibold text-xs underline text-left shrink-0 cursor-pointer"
+                >
+                  Ver Guia Ilustrado →
+                </button>
               </div>
             </div>
           )}
@@ -485,6 +527,13 @@ export const SongView: React.FC<SongViewProps> = ({
           </nav>
         )}
       </main>
+
+      {/* Hand Rules Modal */}
+      <HandRulesGuide
+        isOpen={showHandRules}
+        onClose={() => setShowHandRules(false)}
+        isModal={true}
+      />
     </div>
   );
 };

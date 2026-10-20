@@ -2,7 +2,6 @@ import React from 'react';
 import {
   GUITAR_CHORDS_DB,
   getGuitarChordData,
-  getChordDiagramTitle,
 } from '../utils/musicTheory';
 
 interface ChordDiagramProps {
@@ -19,19 +18,18 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
   showTitle = true,
 }) => {
   const data = getGuitarChordData(chord) || GUITAR_CHORDS_DB[chord];
-  const displayTitle = getChordDiagramTitle(chord);
 
   if (!data) {
     return (
       <div
-        className={`flex flex-col items-center justify-center p-3.5 rounded-2xl bg-white text-[#111827] border border-slate-200 shadow-sm min-w-[125px] ${className}`}
+        className={`inline-flex flex-col items-center justify-center p-3.5 rounded-2xl bg-black text-white border border-[#222222] shadow-xl min-w-[125px] ${className}`}
       >
         {showTitle && (
-          <span className="text-[#EE602B] font-extrabold text-sm tracking-wide text-center">
-            {displayTitle || chord}
+          <span className="text-[#EE602B] font-black text-lg tracking-wide text-center">
+            {chord}
           </span>
         )}
-        <span className="text-[11px] text-slate-500 mt-1">Acorde</span>
+        <span className="text-[11px] text-[#A1A1AA] mt-1">Acorde</span>
       </div>
     );
   }
@@ -40,7 +38,7 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
   const strings = 6;
   const numFrets = 5; // 5 frets exactly matching reference model
 
-  // Dimensions & positioning
+  // Dimensions & positioning matching image_92e61ca6.png
   const width = 124;
   const height = capo > 0 ? 190 : 178;
   const startX = 32;
@@ -86,12 +84,12 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
 
   return (
     <div
-      className={`inline-flex flex-col items-center p-3 rounded-2xl bg-white text-[#111827] border border-slate-200/90 shadow-md select-none min-w-[125px] ${className}`}
+      className={`inline-flex flex-col items-center p-3 rounded-2xl bg-black text-white border border-[#242424] shadow-2xl select-none min-w-[125px] ${className}`}
     >
-      {/* Title: Coral Orange (e.g. "D - Ré") exactly matching reference */}
+      {/* Title: Vibrant Coral Orange (e.g. "D") matching image_92e61ca6.png */}
       {showTitle && (
-        <div className="text-[#EE602B] font-black text-[15px] leading-tight tracking-wide mb-1 text-center font-sans">
-          {displayTitle}
+        <div className="text-[#EE602B] font-black text-lg leading-tight tracking-wide mb-1 text-center font-sans">
+          {chord}
         </div>
       )}
 
@@ -104,36 +102,36 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
         {/* Top Nut or CAPO Bar */}
         {capo > 0 ? (
           <g>
-            {/* Bold black Capo number on the left */}
+            {/* Bold white Capo number on the left */}
             <text
               x={startX - 17}
               y={startY - 3}
               fontSize="24"
               fontWeight="900"
-              fill="#000000"
+              fill="#FFFFFF"
               textAnchor="middle"
               fontFamily="sans-serif"
             >
               {capo}
             </text>
 
-            {/* Black rounded CAPO pill spanning strings 6 to 1 */}
+            {/* White rounded CAPO pill spanning strings 6 to 1 */}
             <rect
               x={startX - 4}
               y={startY - 15}
               width={(strings - 1) * stringSpacing + 8}
               height={15}
               rx={7.5}
-              fill="#000000"
+              fill="#FFFFFF"
             />
 
-            {/* White CAPO label centered inside the pill */}
+            {/* Black CAPO label centered inside the pill */}
             <text
               x={startX + ((strings - 1) * stringSpacing) / 2}
               y={startY - 4}
               fontSize="8.5"
               fontWeight="900"
-              fill="#FFFFFF"
+              fill="#000000"
               textAnchor="middle"
               fontFamily="sans-serif"
               letterSpacing="2.5"
@@ -149,7 +147,7 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
               y={startY + 15}
               fontSize="13"
               fontWeight="900"
-              fill="#000000"
+              fill="#FFFFFF"
               textAnchor="middle"
               fontFamily="sans-serif"
             >
@@ -160,24 +158,24 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
               y1={startY}
               x2={startX + (strings - 1) * stringSpacing}
               y2={startY}
-              stroke="#000000"
+              stroke="#FFFFFF"
               strokeWidth="2"
             />
           </g>
         ) : (
-          /* Solid black Nut line when baseFret == 1 and no capo */
+          /* Solid white Nut line when baseFret == 1 and no capo */
           <line
             x1={startX}
             y1={startY}
             x2={startX + (strings - 1) * stringSpacing}
             y2={startY}
-            stroke="#000000"
-            strokeWidth="4.5"
+            stroke="#FFFFFF"
+            strokeWidth="4"
             strokeLinecap="round"
           />
         )}
 
-        {/* 5 Horizontal fret lines */}
+        {/* 5 Horizontal fret lines in crisp white */}
         {Array.from({ length: numFrets + 1 }).map((_, f) => (
           <line
             key={`fret-${f}`}
@@ -185,12 +183,12 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
             y1={startY + f * fretSpacing}
             x2={startX + (strings - 1) * stringSpacing}
             y2={startY + f * fretSpacing}
-            stroke="#000000"
+            stroke="#FFFFFF"
             strokeWidth={f === 0 && !capo && baseFret === 1 ? 0 : 1.4}
           />
         ))}
 
-        {/* 6 Vertical string lines (strings 6 to 1) */}
+        {/* 6 Vertical string lines (strings 6 to 1) in crisp white */}
         {Array.from({ length: strings }).map((_, s) => (
           <line
             key={`string-${s}`}
@@ -198,7 +196,7 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
             y1={startY}
             x2={startX + s * stringSpacing}
             y2={startY + numFrets * fretSpacing}
-            stroke="#000000"
+            stroke="#FFFFFF"
             strokeWidth="1.4"
           />
         ))}
@@ -212,7 +210,7 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
             height={11}
             rx={5.5}
             fill="#FFFFFF"
-            stroke="#000000"
+            stroke="#FFFFFF"
             strokeWidth="1.4"
           />
         )}
@@ -247,7 +245,7 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
           return null;
         })}
 
-        {/* Bottom Row: P (Thumb) in black circle, I M A in grey circles */}
+        {/* Bottom Row: P (Thumb) in Coral Orange circle with white P; I M A in grey circles with dark text */}
         {Array.from({ length: strings }).map((_, s) => {
           const x = startX + s * stringSpacing;
           const botY = startY + numFrets * fretSpacing + 16;
@@ -256,7 +254,7 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
           if (symbol === 'P') {
             return (
               <g key={`pima-${s}`}>
-                <circle cx={x} cy={botY} r="6.5" fill="#000000" />
+                <circle cx={x} cy={botY} r="6.5" fill="#F26535" />
                 <text
                   x={x}
                   y={botY + 3.5}
@@ -291,7 +289,7 @@ export const ChordDiagram: React.FC<ChordDiagramProps> = ({
             );
           }
 
-          // Unplayed / muted strings have no circle underneath (completely clean as in image_d090ec2d.png)
+          // Unplayed / muted strings have no circle underneath (completely clean as in image_92e61ca6.png)
           return null;
         })}
       </svg>

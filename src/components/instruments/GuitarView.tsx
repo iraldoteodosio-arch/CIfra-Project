@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Song, NotationType } from '../../types/music';
 import { transposeChord } from '../../utils/musicTheory';
 import { ChordDiagram } from '../ChordDiagram';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { HandRulesGuide } from '../HandRulesGuide';
+import { ChevronDown, ChevronUp, Hand } from 'lucide-react';
 
 export { ChordDiagram as GuitarChordDiagram } from '../ChordDiagram';
 
@@ -20,6 +21,7 @@ export const GuitarView: React.FC<GuitarViewProps> = ({
   notation,
 }) => {
   const [showDiagrams, setShowDiagrams] = useState(true);
+  const [showHandRules, setShowHandRules] = useState(false);
   const violaoData = song.instrumentsData?.violao;
   const capoNumber = song.capo !== undefined && song.capo !== null ? song.capo : violaoData?.capo;
 
@@ -80,11 +82,22 @@ export const GuitarView: React.FC<GuitarViewProps> = ({
               </span>
             </div>
 
-            {capoNumber && capoNumber > 0 && (
-              <span className="text-[11px] text-[#F26535] font-semibold">
-                Capotraste na {capoNumber}ª casa
-              </span>
-            )}
+            <div className="flex items-center gap-2">
+              {capoNumber && capoNumber > 0 && (
+                <span className="text-[11px] text-[#F26535] font-semibold mr-1">
+                  Capotraste na {capoNumber}ª casa
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={() => setShowHandRules(true)}
+                className="flex items-center gap-1.5 text-xs text-[#EE602B] hover:text-white px-2.5 py-1 rounded-lg bg-[#181818] border border-[#EE602B]/40 hover:border-[#EE602B] transition-colors cursor-pointer"
+                title="Ver a regra das mãos (Mão esquerda: acordes, Mão direita: batidas e dedilhados)"
+              >
+                <Hand className="w-3.5 h-3.5" />
+                <span>Regra das Mãos</span>
+              </button>
+            </div>
           </div>
 
           {/* Horizontal scrollable row of chords */}
@@ -103,7 +116,7 @@ export const GuitarView: React.FC<GuitarViewProps> = ({
             <div className="flex items-center gap-3">
               <span className="text-[#8BB8FF] font-medium">Dedos da mão direita (dedilhado):</span>
               <div className="flex items-center gap-1.5">
-                <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-black text-white border border-white text-[9px] font-bold">P</span>
+                <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#F26535] text-white text-[9px] font-bold">P</span>
                 <span>Polegar</span>
               </div>
               <div className="flex items-center gap-1.5">
@@ -125,8 +138,41 @@ export const GuitarView: React.FC<GuitarViewProps> = ({
               <span>Dedos da mão esquerda</span>
             </div>
           </div>
+
+          {/* Lembre-se: Regra da Mão Esquerda e Mão Direita (image_b5a9d7ee.png) */}
+          <div className="mt-3 pt-3 border-t border-[#1f1f1f] flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs bg-[#141414] p-3 rounded-xl border border-[#242424]">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-[#EE602B] font-black uppercase text-[11px] tracking-wider">
+                Lembre-se:
+              </span>
+              <div className="flex items-center gap-1 text-[#D4D4D8]">
+                <strong className="text-white">Mão Esquerda:</strong>
+                <span className="text-[#A1A1AA]">Executa a formação dos acordes (dedos 1, 2, 3, 4)</span>
+              </div>
+              <span aria-hidden="true" className="hidden md:inline text-[#333]">·</span>
+              <div className="flex items-center gap-1 text-[#D4D4D8]">
+                <strong className="text-white">Mão Direita:</strong>
+                <span className="text-[#A1A1AA]">Executa as batidas e os dedilhados (P, I, M, A)</span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setShowHandRules(true)}
+              className="text-[#EE602B] hover:text-white font-semibold text-xs underline text-left shrink-0 cursor-pointer"
+            >
+              Ver Guia Ilustrado →
+            </button>
+          </div>
         </div>
       )}
+
+      {/* Hand Rules Modal */}
+      <HandRulesGuide
+        isOpen={showHandRules}
+        onClose={() => setShowHandRules(false)}
+        isModal={true}
+      />
     </div>
   );
 };

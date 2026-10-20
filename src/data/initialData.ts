@@ -495,6 +495,135 @@ Nós Te desejamos outra vez
 D4(6)/A  G
 aqui`;
 
+export const SONG_3_CONTENT = `Tom:  Am
+
+[Primeira Parte]
+
+           C
+Ele abriu mão de Sua glória
+              E7
+Sangrou no madeiro por mim
+         Am7     G      F9
+Me conectou, salvou, curou
+
+           C
+Ele me deu um destino
+               E7
+Uma capa e um pouco de vinho
+              Am7    G      F7M
+Ele me deu unção, cajado e pão
+
+[Segunda Parte]
+
+         Dm7(9)
+Pôs um anel em meu dedo
+      C/E
+Me tirou o medo
+          F9              C/E
+Novas sandálias pra suportar o ide
+
+         Dm7(9)
+Pôs um anel em meu dedo
+      C/E
+Me tirou o medo
+          F9
+Novas sandálias e disse vai
+
+[Pré-Refrão]
+
+  F7M
+E eu me despedi dos meus pais
+Am7
+Eu queimei minhas carroças
+  F7M                        G   G4  G
+E eu afundei meus barcos no cais
+  F7M
+E eu me despedi dos meus pais
+Am7
+Eu queimei minhas carroças
+  F7M                        G   G4  G
+E eu afundei meus barcos no cais
+
+[Refrão]
+
+F7M
+    Pra onde eu irei
+
+Se eu não tenho pra onde voltar?
+Am7
+    Só tenho Você, Deus
+Em7
+    Palavra de vida eterna
+
+F7M
+    Pra onde eu irei
+
+Se eu não tenho pra onde voltar?
+Am7
+    Só tenho Você, Deus
+Em7
+    Palavra de vida eterna
+
+F7M
+    Pra onde eu irei
+G
+  Se eu não tenho pra onde voltar?
+Am7
+    Só tenho Você, Deus
+Em7
+    Palavra de vida eterna
+
+F7M
+    Pra onde eu irei
+G
+  Se eu não tenho pra onde voltar?
+Am7
+    Só tenho Você, Deus
+Em7
+    Palavra de vida eterna
+
+F7M
+    Pra onde eu irei
+G
+  Se eu não tenho pra onde voltar?
+Am7
+    Só tenho Você, Deus
+Em7
+    Palavra de vida eterna
+
+F7M
+    Pra onde eu irei
+G
+  Se eu não tenho pra onde voltar?
+Am7
+    Só tenho Você, Deus
+Em7
+    Palavra de vida eterna
+
+[Final]
+
+  F9   G              Am7
+Sou, sou totalmente Teu
+ Em               F9
+Fui encontrado pelo Teu amor
+   G
+Pelo Teu amor
+
+ F9   G              Am7
+Sou, sou totalmente Teu
+ Em                    F9
+Fui contemplado em ser um com você
+    G
+Ser um com você
+    F9
+Ser um com você
+    G
+Ser um com você
+    F9
+Ser um com você
+    G
+Ser um`;
+
 export const INITIAL_SONGS: Song[] = [
   {
     id: 'song-1',
@@ -582,22 +711,38 @@ export const INITIAL_SONGS: Song[] = [
     collectionId: 'col-morada-top10',
     title: 'Para Onde Eu Irei?',
     slug: 'para-onde-eu-irei',
-    originalKey: '',
-    bpm: null,
-    timeSignature: '',
-    capo: null,
-    content: '',
-    structure: '',
-    observations: '',
+    originalKey: 'Am',
+    bpm: 68,
+    timeSignature: '4/4',
+    capo: 0,
+    content: SONG_3_CONTENT,
+    structure: '1ª Parte > 2ª Parte > Pré-Refrão > Refrão > Final',
+    observations: 'Tom: Am. Canção de entrega e renúncia do Morada. Condução emocional marcante com dedilhado no violão e dinâmica crescente até a explosão do Refrão e do clamor Final.',
     status: 'published',
     order: 3,
     createdAt: '2026-10-20T00:00:00.000Z',
     updatedAt: '2026-10-20T00:00:00.000Z',
     instrumentsData: {
-      violao: {},
-      teclado: {},
-      baixo: {},
-      bateria: {},
+      violao: {
+        notes: 'Tom Am. Tocar dedilhado suave na 1ª e 2ª partes (dedos P no baixo, I, M, A nas cordas primas). A partir do Pré-Refrão ("E eu me despedi dos meus pais"), entrar com levada cheia de palhetada marcada.',
+        capo: 0,
+        tuning: 'Padrão (E A D G B E)',
+      },
+      teclado: {
+        notes: 'Base suave de piano acústico somado a um pad ambiente etéreo. Acompanhar as passagens Dm7(9) -> C/E -> F9 e marcar o pulso nos refrões.',
+        synthPatch: 'Acoustic Piano + Ambient Shimmer Pad',
+        keyNotes: 'Am7: Lá-Dó-Mi-Sol | C: Dó-Mi-Sol | E7: Mi-Sol#-Si-Ré | F7M: Fá-Lá-Dó-Mi | Dm7(9): Ré-Fá-Lá-Dó-Mi',
+      },
+      baixo: {
+        notes: 'Entrada suave na 2ª parte sustentando as notas fundamentais (C, E, Am, G, F). No Pré-Refrão e Refrão, marcar forte o pulso com condução definida e dinâmica forte.',
+        bassLineNotes: 'Parte 1: C -> E -> A -> G -> F\nParte 2: D -> E -> F -> E\nRefrão: F -> A -> E',
+        tuning: 'Padrão (E A D G)',
+      },
+      bateria: {
+        tempoFeel: '68 BPM - Balada worship profunda com dinâmica crescente',
+        cues: '1ª e 2ª parte apenas chimbal/side-stick e ambiência. Condução crescente no Pré-Refrão e batida firme de worship no Refrão com bumbo e caixa aberta.',
+        sectionsOutline: 'Parte 1 (silêncio/pads) -> 2ª Parte (side-stick leve) -> Pré-Refrão (bumbo de chão e crescendo) -> Refrão (groove completo) -> Final (intensidade máxima)',
+      },
     },
   },
   {

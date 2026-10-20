@@ -3,7 +3,8 @@ import { Song, NotationType } from '../types/music';
 import { parseSongContent } from '../utils/chordParser';
 import { transposeChord, getChordNotes } from '../utils/musicTheory';
 import { ChordDiagram } from './ChordDiagram';
-import { X, Sparkles } from 'lucide-react';
+import { HandRulesGuide } from './HandRulesGuide';
+import { X, Sparkles, Hand } from 'lucide-react';
 
 interface SongChordViewerProps {
   song: Song;
@@ -19,6 +20,7 @@ export const SongChordViewer: React.FC<SongChordViewerProps> = ({
   fontSize,
 }) => {
   const [activeChordModal, setActiveChordModal] = useState<string | null>(null);
+  const [showHandRules, setShowHandRules] = useState<boolean>(false);
 
   const parsedLines = useMemo(() => {
     return parseSongContent(song.content);
@@ -193,15 +195,44 @@ export const SongChordViewer: React.FC<SongChordViewerProps> = ({
               </div>
             )}
 
+            {/* Lembre-se: Regra da Mão Esquerda e Mão Direita (image_b5a9d7ee.png) */}
+            <div className="mt-3 pt-2.5 border-t border-[#292929] text-[11px] text-left space-y-1 bg-[#0c0c0c] p-2.5 rounded-xl border border-[#222222]">
+              <div className="flex items-center justify-between">
+                <span className="text-[#EE602B] font-bold uppercase text-[10px] tracking-wider">
+                  Lembre-se:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setShowHandRules(true)}
+                  className="text-[#EE602B] hover:text-white underline text-[10px] font-semibold cursor-pointer"
+                >
+                  Ver Guia Ilustrado
+                </button>
+              </div>
+              <div className="text-[#A1A1AA] text-[11px]">
+                <strong className="text-white">Mão Esquerda:</strong> Formação do acorde (1 a 4)
+              </div>
+              <div className="text-[#A1A1AA] text-[11px]">
+                <strong className="text-white">Mão Direita:</strong> Dedilhado (P, I, M, A)
+              </div>
+            </div>
+
             <button
               onClick={() => setActiveChordModal(null)}
-              className="mt-4 w-full py-1.5 rounded-lg bg-[#1f1f1f] hover:bg-[#262626] border border-[#292929] text-xs text-[#E5E5E5] font-medium transition-colors"
+              className="mt-4 w-full py-1.5 rounded-lg bg-[#1f1f1f] hover:bg-[#262626] border border-[#292929] text-xs text-[#E5E5E5] font-medium transition-colors cursor-pointer"
             >
               Fechar
             </button>
           </div>
         </div>
       )}
+
+      {/* Hand Rules Modal */}
+      <HandRulesGuide
+        isOpen={showHandRules}
+        onClose={() => setShowHandRules(false)}
+        isModal={true}
+      />
     </div>
   );
 };
